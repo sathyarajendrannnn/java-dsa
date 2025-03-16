@@ -19,3 +19,20 @@ class Solution {
         return result.toString(); 
     } 
 }
+pseudo code:
+FUNCTION mergeAlternately(word1, word2):
+    INITIALIZE result as empty string
+    INITIALIZE i = 0
+
+    WHILE i is less than length of word1 OR i is less than length of word2:
+        
+        IF i is less than length of word1:
+            APPEND character at index i of word1 to result
+        
+        IF i is less than length of word2:
+            APPEND character at index i of word2 to result
+
+        INCREMENT i by 1
+
+    RETURN result
+
