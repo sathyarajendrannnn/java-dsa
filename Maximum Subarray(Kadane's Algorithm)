@@ -1,0 +1,26 @@
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = nums[0];
+        int currSum = nums[0];
+        
+        for (int i = 1; i < nums.length; i++) {
+            // Either start a new subarray or continue with previous
+            currSum = Math.max(nums[i], currSum + nums[i]);
+            maxSum = Math.max(maxSum, currSum);
+        }
+        
+        return maxSum;
+    }
+}
+
+1. Pseudocode (Kadane’s Algorithm):
+
+FUNCTION maxSubArray(nums):
+    INITIALIZE maxSum = nums[0]
+    INITIALIZE currSum = nums[0]
+    
+    FOR i = 1 to length of nums - 1:
+        currSum = MAX(nums[i], currSum + nums[i])
+        maxSum = MAX(maxSum, currSum)
+    
+    RETURN maxSum
