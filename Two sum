@@ -1,0 +1,25 @@
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int ans[]=new int[2];
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i]+nums[j]==target){
+                    ans[0]=i;
+                    ans[1]=j;
+                }
+            }
+        }
+        return ans;
+    }
+}
+Pseudocode: Two Sum Problem (Brute Force)
+FUNCTION twoSum(nums, target):
+    INITIALIZE ans as an array of size 2
+
+    FOR i from 0 to length of nums - 1:
+        FOR j from i + 1 to length of nums - 1:
+            IF nums[i] + nums[j] == target:
+                ans[0] = i
+                ans[1] = j
+
+    RETURN ans
