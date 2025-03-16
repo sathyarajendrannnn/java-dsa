@@ -1,0 +1,31 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        if(s.length()!=t.length()) return false;
+        char x[]=s.toCharArray();
+        char y[]=t.toCharArray();
+        Arrays.sort(x);
+        Arrays.sort(y);
+        for(int i=0;i<x.length;i++){
+            if(x[i]!=y[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+Pseudocode: Check if Two Strings Are Anagrams
+FUNCTION isAnagram(s, t):
+    IF length of s ≠ length of t:
+        RETURN false
+
+    CONVERT s to character array x
+    CONVERT t to character array y
+
+    SORT array x
+    SORT array y
+
+    FOR i from 0 to length of x - 1:
+        IF x[i] ≠ y[i]:
+            RETURN false
+
+    RETURN true
