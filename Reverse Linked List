@@ -1,0 +1,33 @@
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode trav= head;
+        ListNode prev=null;
+        ListNode after=null;
+     while(trav!=null)
+      {
+     after=trav.next;
+     trav.next=prev;
+     prev=trav;
+     trav=after;
+        }
+    head=prev;
+ 
+    return head;
+    }
+}
+
+Pseudo Code:
+FUNCTION reverseList(head):
+    SET trav = head
+    SET prev = null
+    SET after = null
+
+    WHILE trav is not null:
+        SET after = trav.next       // Store next node
+        SET trav.next = prev        // Reverse the link
+        SET prev = trav             // Move prev one step forward
+        SET trav = after            // Move trav one step forward
+
+    SET head = prev                 // Update head to the last node (new head)
+
+    RETURN head
