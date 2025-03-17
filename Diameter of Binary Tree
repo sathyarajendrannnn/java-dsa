@@ -1,0 +1,36 @@
+class Solution {
+    int maxDiameter = 0;
+    
+    public int diameterOfBinaryTree(TreeNode root) {
+        depth(root);
+        return maxDiameter;
+    }
+    
+    private int depth(TreeNode node) {
+        if (node == null) return 0;
+        int leftDepth = depth(node.left);
+        int rightDepth = depth(node.right);    // Update max diameter
+        maxDiameter = Math.max(maxDiameter, leftDepth + rightDepth)  // Return height of subtree rooted at node
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+}
+
+pesudo code:
+Initialize maxDiameter = 0
+
+Function diameterOfBinaryTree(root):
+    Call depth(root)
+    Return maxDiameter
+
+Function depth(node):
+    If node is null:
+        Return 0
+    
+    leftDepth = depth(node.left)
+    rightDepth = depth(node.right)
+    
+    // Update the maximum diameter
+    maxDiameter = max(maxDiameter, leftDepth + rightDepth)
+    
+    // Return height of current node
+    Return 1 + max(leftDepth, rightDepth)
