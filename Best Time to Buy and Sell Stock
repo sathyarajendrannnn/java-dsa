@@ -1,0 +1,31 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+    if (prices == null || prices.length <= 1) return 0;
+
+    int minPrice = prices[0]; // Minimum price so far
+    int maxProfit = 0; // Maximum profit so far
+
+    for (int i = 1; i < prices.length; i++) {
+        maxProfit = Math.max(maxProfit, prices[i] - minPrice); // Update max profit
+        minPrice = Math.min(minPrice, prices[i]); // Update min price
+    }
+
+    return maxProfit;
+}
+}
+pseudo code
+FUNCTION maxProfit(prices):
+    IF prices is null OR length of prices <= 1:
+        RETURN 0
+
+    SET minPrice = first element of prices
+    SET maxProfit = 0
+
+    FOR i FROM 1 TO length of prices - 1:
+        CALCULATE profit = prices[i] - minPrice
+        IF profit > maxProfit:
+            UPDATE maxProfit = profit
+        IF prices[i] < minPrice:
+            UPDATE minPrice = prices[i]
+
+    RETURN maxProfit
