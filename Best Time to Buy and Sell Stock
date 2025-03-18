@@ -1,31 +1,43 @@
 class Solution {
     public int maxProfit(int[] prices) {
-    if (prices == null || prices.length <= 1) return 0;
-
-    int minPrice = prices[0]; // Minimum price so far
-    int maxProfit = 0; // Maximum profit so far
-
-    for (int i = 1; i < prices.length; i++) {
-        maxProfit = Math.max(maxProfit, prices[i] - minPrice); // Update max profit
-        minPrice = Math.min(minPrice, prices[i]); // Update min price
+    int max=0 , min=prices[0];
+    
+    for(int i=0;i<prices.length;i++){
+        if(prices[i]<min)
+        {
+            min=prices[i];
+        }
+        else
+        {
+            max=Math.max(max,prices[i]-min);
+        }
     }
-
-    return maxProfit;
+    return max;
 }
 }
-pseudo code
-FUNCTION maxProfit(prices):
-    IF prices is null OR length of prices <= 1:
-        RETURN 0
+PSEUDO CODE
+Function maxProfit(prices):
+    Initialize max = 0
+    Initialize min = prices[0]
 
-    SET minPrice = first element of prices
-    SET maxProfit = 0
+    For i = 0 to length of prices - 1:
+        If prices[i] < min:
+            min = prices[i]
+        Else:
+            max = Maximum of (max, prices[i] - min)
 
-    FOR i FROM 1 TO length of prices - 1:
-        CALCULATE profit = prices[i] - minPrice
-        IF profit > maxProfit:
-            UPDATE maxProfit = profit
-        IF prices[i] < minPrice:
-            UPDATE minPrice = prices[i]
+    Return max
 
-    RETURN maxProfit
+⏰ Time Complexity:
+The loop runs through the array once, performing constant time operations in each iteration.
+Time Complexity = O(n)
+where n = number of days (length of prices array).
+
+💾 Space Complexity:
+Only a few variables (max, min) are used; no extra data structures.
+Space Complexity = O(1) (constant space)
+
+Summary:
+Time Complexity: O(n)
+Space Complexity: O(1)
+
