@@ -1,0 +1,22 @@
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int i=0,j=0;
+        while(j<nums.length){
+            if(nums[j]!=val) nums[i++]=nums[j++];
+            else j++;
+        }
+        return i;
+    }
+}
+/* nums array and val are given
+initalize int i=0,j=0;
+loop runs until then j reaches the nums length
+{
+    if the nums[j]!=val then increment i and j
+    else increment j only
+}
+finaly return i
+*/
+Time Complexity	O(n)
+Space Complexity	O(1)
+
