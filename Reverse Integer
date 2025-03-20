@@ -1,0 +1,30 @@
+class Solution {
+    public int reverse(int x) {
+        int rev = 0;
+        while (x != 0) {
+            int digit = x % 10;
+            
+            // Check overflow:
+            if (rev > 214748364 || rev < -214748364) {
+                return 0;
+            }
+            
+            rev = rev * 10 + digit;
+            x = x / 10;
+        }
+        return rev;
+    }
+}
+How it works:
+Initialize rev = 0 → to store the reversed number.
+Loop while x is not zero:
+Get the last digit of x → digit = x % 10.
+Check if adding this digit will cause overflow:
+If rev becomes too large (> 214748364 or < -214748364), return 0.
+Multiply rev by 10 and add digit.
+Remove the last digit from x → x = x / 10.
+After loop, return rev.
+
+
+Time: O(log₁₀N)	Each loop removes one digit (divide by 10), so proportional to number of digits.
+Space: O(1)	Only uses a few integer variables, no extra space used.
