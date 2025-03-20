@@ -1,0 +1,100 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+
+            if(c=='('||c=='{'||c=='['){
+                st.push(c);
+            }
+            else if(c==')'){
+                if(!st.isEmpty() && st.peek()=='('){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            else if(c=='}'){
+                if(!st.isEmpty() && st.peek()=='{'){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+            else if(c==']'){
+                if(!st.isEmpty() && st.peek()=='['){
+                    st.pop();
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        return st.isEmpty();
+    }
+}
+Pseudo-code:
+Initialize an empty stack
+
+For each character 'c' in the input string:
+    If 'c' is an opening bracket '(' or '{' or '[':
+        Push 'c' to the stack
+    Else if 'c' is a closing bracket:
+        If the stack is not empty AND top of stack is matching opening bracket:
+            Pop the stack
+        Else:
+            Return false (mismatch found)
+
+After processing all characters:
+    If the stack is empty:
+        Return true (all brackets matched correctly)
+    Else:
+        Return false (some opening brackets are unmatched)
+
+Explanation:
+Use a Stack:
+
+Why? Because stack follows LIFO (Last In, First Out), and we need to match the most recent opening bracket first.
+Push Opening Brackets:
+
+Whenever we encounter '(', '{', '[', push them onto the stack.
+Match Closing Brackets:
+
+When we encounter ')', '}', ']', check:
+Is stack empty?
+→ If yes, there’s no opening bracket to match → Invalid, return false.
+Is top of stack matching opening bracket?
+→ If yes, pop it → matched. → Else, mismatched → Invalid, return false.
+Final Stack Check:
+
+After the loop, if the stack is empty → all brackets matched → return true.
+If not empty → unmatched opening brackets → return false.
+Example Walkthrough:
+Example 1:
+Input: "{[()]}"
+
+Step 1: '{' → push → Stack: {'{'}
+Step 2: '[' → push → Stack: {'{', '['}
+Step 3: '(' → push → Stack: {'{', '[', '('}
+Step 4: ')' → top = '(' → pop → Stack: {'{', '['}
+Step 5: ']' → top = '[' → pop → Stack: {'{'}
+Step 6: '}' → top = '{' → pop → Stack: {}
+Stack is empty → return true.
+
+Example 2:
+Input: "([)]"
+
+Step 1: '(' → push → Stack: {'('}
+Step 2: '[' → push → Stack: {'(', '['}
+Step 3: ')' → top = '[' → mismatch → return false.
+
+Time & Space Complexity:
+Time Complexity:
+O(N), where N = length of the string.
+Each character is processed once.
+Space Complexity:
+O(N) in the worst case:
+If all characters are opening brackets, all get pushed into the stack.
+
