@@ -1,0 +1,37 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k = k % n; // In case k > n
+        int[] temp = new int[n];
+
+        // Store rotated elements in temp
+        for (int i = 0; i < n; i++) {
+            temp[(i + k) % n] = nums[i];
+        }
+
+        // Copy back to nums
+        for (int i = 0; i < n; i++) {
+            nums[i] = temp[i];
+        }
+    }
+}
+
+Function rotate(nums[], k):
+    n = length of nums
+    k = k % n   // Effective rotation
+    
+    Create temp[n]
+    
+    For i = 0 to n-1:
+        temp[(i + k) % n] = nums[i]
+    
+    For i = 0 to n-1:
+        nums[i] = temp[i]
+
+
+⏱ Time Complexity:
+O(n)
+First loop: O(n) to fill temp[]
+Second loop: O(n) to copy back to nums[]
+📦 Space Complexity:
+O(n) extra space (due to temp[] array of size n)
