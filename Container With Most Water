@@ -1,0 +1,39 @@
+class Solution {
+    public static int maxArea(int[] height) {
+        int max = 0;
+        int l = 0;
+        int r = height.length - 1;
+        while (l < r) {
+            int min = Math.min(height[l], height[r]);
+            max = Math.max(max, min * (r - l));
+            while (l < r && height[l] <= min) l++;
+            while (l < r && height[r] <= min) r--;
+        }
+        return max;
+    }
+}
+
+🟢 Explanation:
+Step-by-step:
+Initialize two pointers:
+
+l (left pointer) at index 0
+r (right pointer) at index n-1
+While loop: Run till l < r:
+
+Calculate the height of the container:
+min = Math.min(height[l], height[r])
+Calculate the area:
+area = min * (r - l)
+Update max area:
+max = Math.max(max, area)
+Move pointers:
+
+Left pointer: If height[l] <= min, move l++ (skip smaller/equal height).
+Right pointer: If height[r] <= min, move r--.
+
+📊 Time Complexity:
+O(n) — We traverse the array once using two pointers.
+Each pointer moves at most n times.
+📊 Space Complexity:
+O(1) — Constant extra space used (no additional data structures).
