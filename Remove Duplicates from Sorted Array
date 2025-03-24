@@ -1,0 +1,34 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if (nums.length == 0) return 0;
+        
+        int k = 1; // First element is always unique
+        
+        for (int i = 1; i < nums.length; i++) {
+            // Compare with previous unique element
+            if (nums[i] != nums[k - 1]) {
+                nums[k] = nums[i]; // Place the unique element at correct position
+                k++;
+            }
+        }
+        
+        return k; // Number of unique elements
+    }
+}
+
+🟢 Explanation:
+The array is sorted → duplicates will always be adjacent.
+
+Start iterating from the second element.
+
+Compare each element with the last unique element (at index k - 1):
+
+If they are different → place it at index k and increment k.
+
+Else → skip the duplicate.
+
+Finally, return k, which is the count of unique elements.
+
+Time Complexity	O(n)
+Space Complexity	O(1)
+
