@@ -1,3 +1,38 @@
+METHOD-1
+
+class Solution {
+    public boolean isUgly(int n) {
+        if (n <= 0) return false;
+        
+        int[] factors = {2, 3, 5};
+        for (int factor : factors) {
+            while (n % factor == 0) {
+                n /= factor;
+            }
+        }
+        
+        return n == 1;
+    }
+}
+
+Mathematical Example:
+
+Let's check if n = 30 is an ugly number:
+Step 1: Divide by 2 → 30÷2=15 30÷2=15
+Step 2: Divide by 3 → 15÷3=5 15÷3=5
+Step 3: Divide by 5 → 5÷5=1 5÷5=1
+Since n becomes 1, 30 is an ugly number ✅
+
+Now, let's check n = 14:
+Step 1: Divide by 2 → 14÷2=7 14÷2=7
+Step 2: 7 is not divisible by 3 or 5, so we stop
+
+
+ Time Complexity = O(log n)
+Space Complexity = O(1).
+
+METHOD -2
+
 class Solution {
     public boolean isUgly(int n) {
          if (n <= 0) return false; 
