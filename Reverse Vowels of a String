@@ -1,0 +1,91 @@
+class Solution {
+    public String reverseVowels(String s) {
+        char[] arr = s.toCharArray();
+        String vowels = "aeiouAEIOU";
+        int i = 0, j = arr.length - 1;
+        
+        while (i < j) {
+            while (i < j && vowels.indexOf(arr[i]) == -1) {
+                i++;
+            }
+            while (i < j && vowels.indexOf(arr[j]) == -1) {
+                j--;
+            }
+            char temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+        
+        return new String(arr);
+    }
+}
+
+
+
+##Explanation of the Code:
+This function reverses only the vowels in a given string while keeping the other characters in place. It uses **two pointers** to achieve an **O(n) time complexity** efficiently.
+##Step-by-Step Execution:
+1. Convert String to Character Array 
+   - Since strings in Java are **immutable**, we convert `s` to a **character array** (`arr`) to modify it efficiently.  
+   - Example:  
+     **Input:** `"IceCreAm"`  
+     **Character Array:** `['I', 'c', 'e', 'C', 'r', 'e', 'A', 'm']`
+
+2. **Use Two Pointers (`i` and `j`)**  
+   - `i` starts from **the beginning** (`0`).  
+   - `j` starts from **the end** (`arr.length - 1`).  
+   - Move `i` forward until it finds a vowel.  
+   - Move `j` backward until it finds a vowel.  
+   - Swap the vowels.
+
+3. **Check for Vowels Efficiently**  
+   - Use `String vowels = "aeiouAEIOU";`  
+   - Use `indexOf(arr[i]) == -1` to check if a character is not a vowel.  
+   - Example:  
+     - `vowels.indexOf('b') == -1` (Not a vowel)  
+     - `vowels.indexOf('e') != -1` (Is a vowel)  
+
+4. **Swap the Vowels**  
+   - Example Execution:  
+     **Initial:**  
+     `I  c  e  C  r  e  A  m`  
+     `↑                   ↑`  
+     **Swap 'I' and 'A':**  
+     `A  c  e  C  r  e  I  m`  
+     `   ↑           ↑`  
+     **Swap 'e' and 'e' (no change):**  
+     `A  c  e  C  r  e  I  m`  
+     `      ↑   ↑`  
+   - Continue until `i >= j`.
+
+5. **Convert Character Array Back to String and Return**  
+   - `return new String(arr);`
+
+---
+
+### **Time Complexity Analysis:**
+- The algorithm **scans each character at most once**.
+- **Best Case:** \(O(1)\) (if there are no vowels, `i` and `j` meet immediately).  
+- **Worst Case:** \(O(n)\) (if there are many vowels, we swap them).  
+- **Overall:** **\(O(n)\) linear time complexity**, where **n** is the length of the string.
+
+---
+
+### **Space Complexity Analysis:**
+- **O(n) for the Character Array (`arr`)**  
+  - Since strings in Java are immutable, we store characters in an array.  
+  - The space used is **proportional to the input size**.  
+- **O(1) for Extra Variables**  
+  - `i`, `j`, `temp`, and `vowels` take **constant** space.  
+
+- **Overall:** **\(O(n)\) space complexity**, mainly due to the character array storage.
+
+---
+
+### **Final Complexity Summary:**
+**Time Complexity:** O(n)  
+**Space Complexity:** O(n) (due to character array storage)  
+
+**Efficient for large strings up to \(3 \times 10^5\) characters!** 🚀
