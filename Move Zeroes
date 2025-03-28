@@ -1,0 +1,46 @@
+METHOD -1 :
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int j=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==0){
+                j=i;
+                break;
+            }
+        }
+        for(int i=j+1;i<nums.length;i++){
+            if(nums[j]==0&&nums[i]!=0){
+                int temp=nums[i];
+                nums[i]=nums[j];
+                nums[j]=temp;
+                j++;
+            }
+        }
+    }
+}
+
+METHOD-2
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int j = 0; // Pointer for placing non-zero elements
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        while (j < nums.length) {
+            nums[j] = 0; // Fill remaining positions with zeroes
+            j++;
+        }
+    }
+}
+Explanation:
+Use j as the index for placing non-zero elements.
+
+Iterate through the array (i), moving non-zero elements to the front.
+
+Once all non-zero elements are placed, fill the remaining positions with zeroes.
+
+⏱ Time Complexity: 𝑂(𝑛)  O(n)
+📌 Space Complexity: 𝑂(1)  O(1) (modifies the array in place)
