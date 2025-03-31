@@ -1,0 +1,49 @@
+class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int count = 0; 
+        
+        for (int i = 0; i < flowerbed.length; i++) {
+            if (flowerbed[i] == 0) { 
+                boolean leftEmpty = (i == 0 || flowerbed[i - 1] == 0);
+                boolean rightEmpty = (i == flowerbed.length - 1 || flowerbed[i + 1] == 0);
+
+                if (leftEmpty && rightEmpty) {
+                    flowerbed[i] = 1; 
+                    count++; 
+                    if (count >= n) return true;
+                }
+            }
+        }
+        return count >= n; 
+    }
+}
+
+Pseudo Code for "Can Place Flowers" Problem
+1. Initialize a count variable to 0 (to keep track of planted flowers).
+
+2. Loop through each plot in the flowerbed:
+    a. If the current plot is empty (0):
+        i. Check if the left plot is empty or it's the first plot.
+        ii. Check if the right plot is empty or it's the last plot.
+        iii. If both left and right plots are empty, plant a flower here:
+            - Mark this plot as planted (1).
+            - Increase count by 1.
+            - If count reaches or exceeds n, return True.
+
+3. After looping through the flowerbed, if count is at least n, return True.
+4. Otherwise, return False.
+
+
+Explanation in Text
+We iterate through the flowerbed and check each empty plot (0).
+If an empty plot has both left and right neighbors also empty (or is at the boundary), we plant a flower.
+Every time we plant, we increase count.
+If count becomes greater than or equal to n, we return true immediately.
+If we finish the loop without planting n flowers, we return false.
+
+Time and Space Complexity
+Time Complexity:
+O(N) → We go through the flowerbed array once, so the worst case takes linear time.
+Space Complexity:
+O(1) → We only use a few extra variables (count, leftEmpty, rightEmpty), so the space is constant.
+
