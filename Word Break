@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int n = s.length();
+        boolean[] dp = new boolean[n + 1]; // Create DP array
+        dp[0] = true; // Empty string is always valid
+        
+        int maxLen = 0; // Find max word length in dictionary
+        for (String word : wordDict) {
+            maxLen = Math.max(maxLen, word.length());
+        }
+
+        for (int i = 1; i <= n; i++) { // Check every substring s[0:i]
+            for (int j = i - 1; j >= Math.max(i - maxLen - 1, 0); j--) { // Try all possible splits
+                String sub = s.substring(j, i); // Extract substring
+                if (dp[j] && wordDict.contains(sub)) { // If valid split found
+                    dp[i] = true;
+                    break; // No need to check further
+                }
+            }
+        }
+        return dp[n]; // Final answer: can we split the whole string?
+    }
+}
+
+
+Time & Space Complexity
+⏳ Time Complexity:
+
+Outer loop runs n times.
+
+Inner loop runs at most maxWordLength times.
+
+O(n × m) where n is the string length, and m is the longest word in wordDict.
+
+🗂 Space Complexity:
+
+O(n) for dp[] array.
+
+O(m) if we store wordDict in a HashSet for quick lookup.
