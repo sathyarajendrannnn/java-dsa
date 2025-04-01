@@ -1,0 +1,11 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        int[] freq = new int[26];
+        for (char r: ransomNote.toCharArray()) {
+            int i = magazine.indexOf(r, freq[r - 'a']);
+            if (i == -1) return false;
+            freq[r - 'a'] = i + 1;
+        }
+        return true;
+    }
+}
