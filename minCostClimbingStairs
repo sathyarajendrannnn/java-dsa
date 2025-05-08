@@ -1,0 +1,43 @@
+public class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        for (int i = 2; i < n; ++i) {
+            cost[i] += Math.min(cost[i - 1], cost[i - 2]);
+        }
+        return Math.min(cost[n - 1], cost[n - 2]);
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------------------
+int[] cost = {10, 15, 20};
+```
+Each index represents a step, and the value is the cost of stepping on that stair.
+
+### Step-by-step Calculation:
+- You can start at **index 0** or **index 1**.
+- At each step, you choose the minimum cost to reach the top.
+
+1. Base case: The first two steps remain the same.
+   ```
+   cost[0] = 10
+   cost[1] = 15
+   ```
+2. Compute `cost[2]`:
+   ```
+   cost[2] += min(cost[1], cost[0])
+   cost[2] = 20 + min(15, 10)
+   cost[2] = 20 + 10 = 30
+   ```
+
+### Final Answer:
+To reach the top, you take the minimum of the last two steps:
+```java
+return Math.min(cost[n - 1], cost[n - 2]);
+```
+```
+Math.min(cost[2], cost[1]) = Math.min(30, 15) = 15
+```
+So the minimum cost to climb the stairs is **₹15**.
+
+Want to try another example? 🚀
